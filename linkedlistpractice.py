@@ -1,3 +1,6 @@
+import logging
+logging.basicConfig(filename='linkedlist.log', level=10, format='%(levelname)s %(name)s %(asctime)s %(message)s')
+
 class Node:
     def __init__(self, data=None, next=None):
         self.data=data
@@ -9,34 +12,47 @@ class LinkedList:
 
     def insertatbeg(self, data):
         """Insert at beginning of linked list.."""
-        node=Node(data,self.head)
-        self.head=node
+        try:
+            node=Node(data,self.head)
+            self.head=node
+        except Exception as e:
+            logging.error(e)
+
 
     def insertatend(self, data):
         """Insert at end of linked list"""
-        if self.head==None:
-            self.insertatbeg(data)
-        else :
-            itr=self.head
-            while(itr.next):
-                itr=itr.next
-            node=Node(data,None)
-            itr.next=node
+        try:
+            if self.head==None:
+                self.insertatbeg(data)
+            else :
+                itr=self.head
+                while(itr.next):
+                    itr=itr.next
+                node=Node(data,None)
+                itr.next=node
+        except Exception as e:
+            logging.error(e)
 
     def insertvalues(self, data):
         """Enter a single Linked List"""
-        self.head=None
-        for i in data:
-            self.insertatend(i)
+        try:
+            self.head=None
+            for i in data:
+                self.insertatend(i)
+        except Exception as e:
+            logging.error(e)
 
     def getlength(self):
         """Get the length of the linked list"""
-        count=0
-        itr=self.head
-        while(itr):
-            itr=itr.next
-            count+=1
-        return count
+        try:
+            count=0
+            itr=self.head
+            while(itr):
+                itr=itr.next
+                count+=1
+            return count
+        except Exception as e:
+            logging.error(e)
 
     def insertatindex(self, data, index):
         """Insert at Index of the Linked List"""
@@ -75,13 +91,16 @@ class LinkedList:
 
     def firstoccrn(self, elmt):
         """Know the first occurence of a an element in a linked list"""
-        itr=self.head
-        count=0
-        while(itr):
-            if(itr.data==elmt):
-                return count
-            count+=1
-            itr=itr.next
+        try:
+            itr=self.head
+            count=0
+            while(itr):
+                if(itr.data==elmt):
+                    return count
+                count+=1
+                itr=itr.next
+        except Exception as e:
+            logging.error(e)
 
     def insert_after_value(self, data_after, data_to_insert):
         """Insert after a certain value in linked list"""
@@ -93,12 +112,15 @@ class LinkedList:
 
     def print(self):
         """Print the entire LinkedLists"""
-        itr=self.head
-        l1=' '
-        while(itr):
-            l1+=str(itr.data)+'-->'
-            itr=itr.next
-        print(l1)
+        try:
+            itr=self.head
+            l1=' '
+            while(itr):
+                l1+=str(itr.data)+'-->'
+                itr=itr.next
+            logging.info(l1)
+        except Exception as e:
+            logging.error(e)
 
 
 ll=LinkedList()
